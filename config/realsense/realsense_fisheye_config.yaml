@@ -1,24 +1,49 @@
 %YAML:1.0
 
 #common parameters
-imu_topic: "/camera/imu/data_raw"
-image_topic: "/camera/fisheye/image_raw"
-output_path: "/home/tony-ws1/output/"
+imu_topic: "/camera/imu"
+image_topic: "/camera/fisheye1/image_raw"
+output_path: "/home/traveller/catkin_mono/output/"
 
 #camera calibration 
-model_type: KANNALA_BRANDT
+model_type: MEI
 camera_name: camera
-image_width: 640
-image_height: 480
+image_width: 848
+image_height: 800
+# projection_parameters:
+#    k2: 1.7280355035195181e-02
+#    k3: -2.5505200860040985e-02
+#    k4: 2.2621441637715487e-02
+#    k5: -7.3355871719731113e-03
+#    mu: 2.7723712054408202e+02
+#    mv: 2.7699784668734617e+02
+#    u0: 3.3625356873985868e+02
+#    v0: 2.3603924727453901e+02
+mirror_parameters:        ####working params
+   xi: 1.6943561
+distortion_parameters:
+   k1: -0.0152185596
+   k2: 0.0540586486
+   p1: -0.05177057906
+   p2: 0.0110414400
 projection_parameters:
-   k2: 1.7280355035195181e-02
-   k3: -2.5505200860040985e-02
-   k4: 2.2621441637715487e-02
-   k5: -7.3355871719731113e-03
-   mu: 2.7723712054408202e+02
-   mv: 2.7699784668734617e+02
-   u0: 3.3625356873985868e+02
-   v0: 2.3603924727453901e+02
+   gamma1: 774.927
+   gamma2: 773.762
+   u0: 420.086
+   v0: 402.516
+
+# mirror_parameters:        ####test
+#    xi: 0.9612886761
+# distortion_parameters:
+#    k1: -0.2635725361
+#    k2: -0.0072369910
+#    p1: -0.0004272363
+#    p2: 0.0001912117
+# projection_parameters:
+#    gamma1: 556.8228346863
+#    gamma2: 557.9442063026
+#    u0: 428.4318374833
+#    v0: 399.6536674270
 
 # Extrinsic parameter between IMU and Camera.
 estimate_extrinsic: 1   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
@@ -30,15 +55,15 @@ extrinsicRotation: !!opencv-matrix
    rows: 3
    cols: 3
    dt: d
-   data: [0.99992917,  0.00878151,  0.00803387,
-           -0.00870674,  0.9999189,  -0.0092943, 
-           -0.00811483,  0.00922369,  0.99992453]
+   data: [-1.0,  0.0,  0.0,
+           0.0, -1.0,  0.0, 
+           0.0,  0.0,  1.0]
 #Translation from camera frame to imu frame, imu^T_cam
 extrinsicTranslation: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
-   data: [0.00188568, 0.00123801, 0.01044055]
+   data: [0.03588568, 0.00023801, 0.00]
 
 #feature traker paprameters
 max_cnt: 120            # max feature number in feature tracking
@@ -50,22 +75,22 @@ equalize: 0             # if image is too dark or light, trun on equalize to fin
 fisheye: 0              # if using fisheye, trun on it. A circle mask will be loaded to remove edge noisy points
 
 #optimization parameters
-max_solver_time: 0.04  # max solver itration time (ms), to guarantee real time
+max_solver_time: 0.05  # max solver itration time (ms), to guarantee real time
 max_num_iterations: 8   # max solver itrations, to guarantee real time
 keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
 
 #imu parameters       The more accurate parameters you provide, the better performance
-acc_n: 0.08          # accelerometer measurement noise standard deviation. #0.2   0.04
-gyr_n: 0.004         # gyroscope measurement noise standard deviation.     #0.05  0.004
-acc_w: 0.00004         # accelerometer bias random work noise standard deviation.  #0.02
-gyr_w: 2.0e-6       # gyroscope bias random work noise standard deviation.     #4.0e-5
-g_norm: 9.805    # gravity magnitude
+acc_n: 0.1          # accelerometer measurement noise standard deviation. #0.2   0.04
+gyr_n: 0.01         # gyroscope measurement noise standard deviation.     #0.05  0.004
+acc_w: 0.001         # accelerometer bias random work noise standard deviation.  #0.002
+gyr_w: 0.0001       # gyroscope bias random work noise standard deviation.     #4.0e-5
+g_norm: 9.805         # gravity magnitude
 
 #loop closure parameters
 loop_closure: 1                    # start loop closure
 fast_relocalization: 1             # useful in real-time and large project
-load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
-pose_graph_save_path: "/home/tony-ws1/output/pose_graph/" # save and load path
+load_previous_pose_graph: 1        # load and reuse previous pose graph; load from 'pose_graph_save_path'
+pose_graph_save_path: "/home/traveller/catkin_mono/output/pose_graph/" # save and load path
 
 #unsynchronization parameters
 estimate_td: 1                      # online estimate time offset between camera and imu
