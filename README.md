@@ -2,7 +2,7 @@
 ## A Robust and Versatile Monocular Visual-Inertial State Estimator
 
 
-CLICK THE IMAGE FOR HARDWARE DEMO VIDEO:
+CLICK THE IMAGE FOR HARDWARE DEMONSTRATION:
 
 
 [![IMAGE_ALT](https://img.youtube.com/vi/p3XCkqcUSS0/0.jpg)](https://www.youtube.com/watch?v=p3XCkqcUSS0)
