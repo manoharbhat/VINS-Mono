@@ -1,6 +1,10 @@
 # VINS-Mono
 ## A Robust and Versatile Monocular Visual-Inertial State Estimator
 
+<a href="https://www.youtube.com/watch?v=p3XCkqcUSS0" target="_blank">
+ <img src="https://www.youtube.com/watch?v=p3XCkqcUSS0" alt="Watch the video" width="240" height="180" border="10" />
+</a>
+
 **11 Jan 2019**: An extension of **VINS**, which supports stereo cameras / stereo cameras + IMU / mono camera + IMU, is published at [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)
 
 **29 Dec 2017**: New features: Add map merge, pose graph reuse, online temporal calibration function, and support rolling shutter camera. Map reuse videos: 
